@@ -1,0 +1,9 @@
+{
+    "C_Cpp.default.includePath": [
+        "/works/libtorrent/include/"
+    ],
+    "C_Cpp.default.browse.path": [
+        "/works/libtorrent/src/"
+    ],
+
+}

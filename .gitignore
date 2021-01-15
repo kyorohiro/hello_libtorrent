@@ -1,0 +1,5 @@
+res/libtorrent
+res/opentracker
+.DS_Store
+app_tracker/opentracker
+app_tracker/libowfat

@@ -1,0 +1,28 @@
+version: '3'
+services: 
+  app:
+    build:
+      context: ./
+      dockerfile: Dockerfile.app
+    ports: 
+      - "8080:8080"
+      - "8443:8443"
+      - "6881:6881"
+      - "6889:6889"
+    volumes: 
+      - ./app:/app
+    command: code-server --auth none --host 0.0.0.0 --port 8443 /app
+  tracker:
+    build:
+      context: ./
+      dockerfile: Dockerfile.tracker
+    ports: 
+      - "6969:6969"
+      - "18443:8443"
+    volumes: 
+      - ./app_tracker:/app
+    command: code-server --auth none --host 0.0.0.0 --port 8443 /app
+
+
+
+
