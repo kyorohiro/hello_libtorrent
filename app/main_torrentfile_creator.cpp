@@ -1,6 +1,6 @@
 //
 // Create a torrent file
-//
+//  LD_LIBRARY_PATH=/usr/local/lib/libtorrent-rasterbar.so g++ main_torrentfile_creator.cpp -ltorrent-rasterbar -lpthread
 #include<iostream>
 #include<vector>
 #include<unistd.h>
@@ -11,7 +11,7 @@
 
 std::string to_absolute_path(std::string args);
 std::string extract_parent_path(std::string filepath);
-void print_usage();
+void print_usage(std::string execute_file_name);
 
 int main(int argc, char *argv[]) {
     std::string tracker_url = "";
@@ -25,6 +25,7 @@ int main(int argc, char *argv[]) {
 
     if(args.size() <= 0) {
         print_usage(std::string(argv[0]));
+        return -1;
     }
 
     for(auto v=args.begin(); v != args.end();v++){
