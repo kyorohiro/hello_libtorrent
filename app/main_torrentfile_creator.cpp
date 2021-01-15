@@ -11,6 +11,7 @@
 
 std::string to_absolute_path(std::string args);
 std::string extract_parent_path(std::string filepath);
+void print_usage();
 
 int main(int argc, char *argv[]) {
     std::string tracker_url = "";
@@ -20,6 +21,10 @@ int main(int argc, char *argv[]) {
     std::vector<std::string> args;
     for(int i=1; i<argc;i++) {
         args.push_back(std::string(argv[i]));
+    }
+
+    if(args.size() <= 0) {
+        print_usage(std::string(argv[0]));
     }
 
     for(auto v=args.begin(); v != args.end();v++){
@@ -57,6 +62,10 @@ int main(int argc, char *argv[]) {
     std::cout.write(torrentfile_source.data(),torrentfile_source.size());
     
     return 0;
+}
+
+void print_usage(std::string args0) {
+    std::cerr << ""<< args0 << " <filename> [ -a <tracker address> ]" << std::endl;
 }
 
 std::string to_absolute_path(std::string path) {
