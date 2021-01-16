@@ -30,7 +30,7 @@ int main() {
         // number
         std::string s;
         lt::bencode(std::back_inserter(s), lt::entry(12));
-        std::cout << s << std::endl; // i-12e
+        std::cout << s << std::endl; // i12e
     }
     {
         // list
