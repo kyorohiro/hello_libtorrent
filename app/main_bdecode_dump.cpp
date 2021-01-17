@@ -1,5 +1,5 @@
 //
-//  g++ main_bdecode_dump.cpp  -ltorrent-rasterbar -lpthread
+//  g++ main_bdecode_dump.cpp -ltorrent-rasterbar -lpthread
 //
 #include <iostream>
 #include <fstream>
