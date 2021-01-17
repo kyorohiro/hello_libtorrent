@@ -7,10 +7,13 @@
 #include <iterator>
 #include<libtorrent/bdecode.hpp>
 #include<regex>
+#include <string>
 
 void print_usage(std::string args0);
 lt::bdecode_node decode_file(std::string filepath);
 void print_bencode_node(lt::bdecode_node target);
+std::string to_asis_hex_string(std::string target, int max);
+
 int main(int argc, char *argv[]) {
     if(argc == 1) {
         print_usage(std::string(argv[0]));
@@ -97,7 +100,7 @@ void print_bencode_node(lt::bdecode_node target) {
             } else if(node.type() == lt::bdecode_node::int_t) {
                 std::cout  << "'" << node.int_value() << "'";
             } else if(node.type() == lt::bdecode_node::string_t) {
-                std::cout << "'"<< node.string_value().substr(0,100) << "'";
+                std::cout << "'"<< to_asis_hex_string(node.string_value().to_string(),100) << "'";
             } else if(node.type() == lt::bdecode_node::none_t) {
                 std::cout << "<none>" ;
             } else {
@@ -110,9 +113,36 @@ void print_bencode_node(lt::bdecode_node target) {
         }
         else {
             std::pair<lt::string_view, lt::bdecode_node> pair= im.pair;
-            std::cout << std::endl << spaces << "<" << im.pair.first << "> : ";// << std::endl;
+            std::cout << std::endl << spaces << "<" << to_asis_hex_string(im.pair.first.to_string(),100) << "> : ";// << std::endl;
             stack.push_back(item(pair.second,im.depth+1));
         }
     }
     std::cout << std::endl;
+}
+
+std::string to_asis_hex_string(std::string target, int max) {
+    
+    bool isAscii = true;
+    for(int i=0;i<target.size();i++) {
+        if(!(0<=target[i] && target[i] < 127)) {
+            isAscii = false;
+            break;
+        }
+    }
+    if(isAscii){
+        // ascii
+        return target.substr(0,max);
+    } else {
+        if(max > target.size()*2) {
+            max = target.size()*2+1;
+        }
+        std::vector<char> ret(max);
+        const char x[] = {'0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'};
+        for(int i=0;i<target.size() && i*2 < max;i++) {
+            int v = (unsigned char)target[i];
+            ret[i*2] = x[(0xf0 & v) >>4]; 
+            ret[i*2+1] =  x[(0x0f & v)];
+        }
+        return std::string("(")+std::to_string(target.size())+std::string(")") + std::string(ret.begin(),ret.end());
+    }
 }
