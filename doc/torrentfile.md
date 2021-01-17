@@ -2,6 +2,7 @@
 
 A Torrent file is used by bittorrent client.  
 This file data contain a information about to connect anotoher peer.
+and target file's information.
 
 - announce
   tracker server url
