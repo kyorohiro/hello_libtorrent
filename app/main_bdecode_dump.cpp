@@ -1,6 +1,7 @@
 //
-//  g++ main_bdecode_dump.cpp -ltorrent-rasterbar -lpthread
+//  LD_LIBRARY_PATH=/usr/local/lib/libtorrent-rasterbar.so g++ main_bdecode_dump.cpp  -o dumper.out -ltorrent-rasterbar -lpthread
 //
+
 #include <iostream>
 #include <fstream>
 #include <vector>
