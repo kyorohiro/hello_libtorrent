@@ -18,7 +18,8 @@ RUN aptitude search boost
 
 # ninja build
 RUN apt-get install ninja-build -y 
-RUN apt-get install cvs
+RUN apt-get install cvs -y
+
 #COPY ./res/opentracker /works/opentracker
 #WORKDIR /works/opentracker
 #RUN make
