@@ -18,7 +18,7 @@ int main(int argc, char *argv[]) try {
     }
     lt::session session(p);
 
-	lt::add_torrent_params atp;// = lt::parse_magnet_uri(argv[1]);
+	lt::add_torrent_params atp;// = lt::parse_magnet_uri("<your magnet link>");
 	atp.save_path = ".data"; // save in current dir
     atp.ti = std::make_shared<lt::torrent_info>(target_torrentfile_path);
 	lt::torrent_handle h = session.add_torrent(std::move(atp));
