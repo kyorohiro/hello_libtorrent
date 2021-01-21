@@ -1,4 +1,4 @@
-//LD_LIBRARY_PATH=/usr/local/lib/libtorrent-rasterbar.so g++ main_simple_client.cpp -o simple_client.out -ltorrent-rasterbar -lpthread
+//LD_LIBRARY_PATH=/usr/local/lib/libtorrent-rasterbar.so g++ main_tiny_client.cpp -o tiny_client.out -ltorrent-rasterbar -lpthread
 
 #include<iostream>
 #include<libtorrent/session.hpp>
