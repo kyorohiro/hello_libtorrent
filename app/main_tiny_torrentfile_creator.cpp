@@ -1,6 +1,6 @@
 //
 // Create a torrent file
-//  LD_LIBRARY_PATH=/usr/local/lib/libtorrent-rasterbar.so g++ main_tiny_torrentfile_creator.cpp  -o torrentfile_creator.out -ltorrent-rasterbar -lpthread
+//  LD_LIBRARY_PATH=/usr/local/lib/libtorrent-rasterbar.so g++ main_tiny_torrentfile_creator.cpp  -o tiny_torrentfile_creator.out -ltorrent-rasterbar -lpthread
 //
 #include<iostream>
 #include<vector>
