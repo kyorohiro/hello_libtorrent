@@ -3,6 +3,11 @@
 #include <iterator>
 #include <sstream>
 #include <vector>
+#include <arpa/inet.h>
+
+std::string ipList[]= {
+    "127.0.0.1"
+};
 
 //
 // data format ref https://lite.ip2location.com/database/ip-country
@@ -13,7 +18,7 @@
 //
 void printUsage()
 {
-    std::cerr << "./a.out<file path>" << std::endl;
+    std::cerr << "./a.out <cvs file> " << std::endl;
 }
 
 struct IpAndCountryInfo
@@ -108,15 +113,29 @@ struct IpAndCountryInfo
 
 int main(int argc, char *argv[])
 {
+    unsigned char buf[sizeof(struct in6_addr)];
+    struct in_addr addr;
+
     if (argc != 2)
     {
         printUsage();
     }
+    std::string ipAndCountryListPath = std::string(argv[1]);
+    //std::string ip = argv[2];
 
+    //
+    // create ip and country pair list 
     std::vector<IpAndCountryInfo> context;
-    IpAndCountryInfo::createIpAndCountryInfoList(std::string(argv[1]), context);
+    IpAndCountryInfo::createIpAndCountryInfoList(ipAndCountryListPath, context);
 
-    std::cout << IpAndCountryInfo::find(context, 16781311).country_name << std::endl;
+    //
+    //
+    int len = sizeof(ipList)/sizeof(ipList[0]);
+    for(int i=0; i < len; i++) {
+        int s = inet_pton(AF_INET, ipList[i].c_str(),&addr);
+        std::cout << "addr:" << ipList[i] << "("<< addr.s_addr << ") ";
+        std::cout << IpAndCountryInfo::find(context, addr.s_addr).country_name << std::endl;
+    }
 
     return 0;
 }
