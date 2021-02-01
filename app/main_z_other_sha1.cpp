@@ -4,7 +4,7 @@
 
 std::string encodeHex(const std::string &val)
 {
-    static char const _hex[16] = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A',   'B','C','D','E','F'};
+    static char const _hex[16] = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B','C','D','E','F'};
     const char *v = val.c_str();
     int size = val.size();
     std::string ret(size*2, ' ');
