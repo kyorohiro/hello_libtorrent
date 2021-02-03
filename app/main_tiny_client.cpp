@@ -37,7 +37,6 @@ int main(int argc, char *argv[]) try {
 	lt::add_torrent_params torrent_params;
     torrent_params.save_path = ".data"; // save in this dir
     if(target_torrentfile_path.length() != 0) {
-    	lt::torrent_handle h = session.add_torrent(std::move(torrent_params));
         torrent_params.ti = std::make_shared<lt::torrent_info>(target_torrentfile_path);
     } else {
         lt::error_code ec;
