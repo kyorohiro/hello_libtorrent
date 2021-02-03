@@ -1,6 +1,6 @@
 //
 // export LD_LIBRARY_PATH=/usr/local/lib/libtorrent-rasterbar.so
-// g++ main_extension.cpp -o main_extension.out -ltorrent-rasterbar -lpthread
+// g++ main_extension_torrent_plugin.cpp -o main_extension.out -ltorrent-rasterbar -lpthread
 //
 
 #include <iostream>
